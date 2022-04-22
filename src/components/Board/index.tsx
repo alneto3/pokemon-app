@@ -2,13 +2,9 @@ import React from "react";
 import { canvas, ECanvas } from "../../contexts/canvas/helpers";
 import { ModalContext } from "../../contexts/chests";
 import { GAME_SIZE, GAME_SIZEH } from "../../settings/constants";
-import Chest from "../Chest";
-import Demon from "../Demon";
 import Hero from "../Hero";
-import MiniDemon from "../MiniDemon";
-import Trap from "../TRAP";
+import Enemy from "../Enemy";
 import ModalCapture from "../Modal";
-import useHeroMoviment from "../../hooks/useHeroMoviment";
 
 function getCanvasMap() {
   const array = [];
@@ -23,20 +19,8 @@ function getCanvasMap() {
       const text = canvas[y][x] || canvasYX;
       const key = `${x}-${y}`;
 
-      if (text === ECanvas.TRAP) {
-        array.push(<Trap key={key} initialPosition={position} />)
-      }
-
-      if (text === ECanvas.MINI_DEMON) {
-        array.push(<MiniDemon key={key} initialPosition={position} />)
-      }
-
-      if (text === ECanvas.DEMON) {
-        array.push(<Demon key={key} initialPosition={position} />)
-      }
-
-      if (text === ECanvas.CHEST) {
-        array.push(<Chest key={key} initialPosition={position} />)
+      if (text === ECanvas.ENEMY) {
+        array.push(<Enemy key={key} initialPosition={position} />)
       }
 
       if (text === ECanvas.HERO) {
@@ -53,15 +37,6 @@ const elements = getCanvasMap();
 
 const Board = () => {
   const modalContext = React.useContext(ModalContext);
-
-
-  
-  // const Board = () => {
-  // const chestsContext = React.useContext(ChestsContext);
-
-  // function renderOpenedDoor(){
-  //   return true
-  // }
 
     function renderModal(){
     return <ModalCapture/>

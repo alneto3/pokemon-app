@@ -28,13 +28,6 @@ function useHeroMoviment(initialPosition) {
       updateDirectionState(direction);
     }
 
-    // if (moviment.nextMove.captured) {
-    //   setTimeout(() => {
-    //     alert('Você foi de Base!')
-    //   })   
-    //   window.location.reload()
-    // }
-
     if (moviment.nextMove.captured) {
       pokesContext.updateOpenedPokes(moviment.nextPosition);
       setTimeout(() => {
@@ -43,10 +36,9 @@ function useHeroMoviment(initialPosition) {
       },);
     }
     
-
-    if (pokesContext.totalPoke === pokesContext.openedPokes.total && moviment.nextMove.door) {
-      console.log('Venceu!')
-    }
+    // if (pokesContext.totalPoke === pokesContext.openedPokes.total && moviment.nextMove.door) {
+    //   console.log('Venceu!')
+    // }
   });
 
   return {

@@ -16,20 +16,8 @@ function Tile(props: IProps) {
       case ECanvas.WALL:
         return 'yellow';
 
-      case ECanvas.DOOR:
-        return 'white';
-
-      case ECanvas.TRAP:
-        return 'purple';
-
-      case ECanvas.MINI_DEMON:
+      case ECanvas.ENEMY:
         return 'red';
-
-      case ECanvas.DEMON:
-        return 'red';
-
-      case ECanvas.CHEST:
-        return 'cyan';
 
       case ECanvas.HERO:
         return 'white';
