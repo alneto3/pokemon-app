@@ -43,18 +43,18 @@ const HR = ECanvas.HERO;
 export const canvas = [
   [WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL],
   [WL, FL, FL, FL, FL, FL, FL, FL, FL, WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
-  [WL, FL, FL, FL, FL, FL, FL, FL, FL, WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
-  [WL, CH, MD, FL, WL, FL, FL, FL, FL, WL, FL, WL, FL, FL, FL, FL, WL, WL, FL, WL, FL, FL, FL, FL, FL, WL, WL],
+  [WL, FL, FL, FL, FL, FL, FL, FL, FL, WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, MD, FL, FL, FL, FL, WL],
+  [WL, FL, MD, FL, WL, FL, FL, FL, FL, WL, FL, WL, FL, FL, FL, FL, WL, WL, FL, WL, FL, FL, FL, FL, FL, WL, WL],
   [WL, FL, FL, WL, WL, WL, WL, FL, FL, WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL, WL],
   [WL, FL, FL, FL, WL, DR, FL, FL, FL, WL, WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
-  [WL, CH, FL, FL, FL, MD, FL, FL, FL, FL, FL, WL, WL, WL, WL, FL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL],
+  [WL, FL, FL, FL, FL, MD, FL, FL, FL, FL, FL, WL, WL, WL, WL, FL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL],
   [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
-  [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, MD, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
-  [WL, FL, TR, TR, TR, FL, FL, FL, WL, WL, WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
+  [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, MD, FL, FL, FL, FL, FL, FL, FL, FL, MD, FL, WL],
+  [WL, FL, FL, FL, FL, FL, FL, FL, WL, WL, WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
   [WL, FL, FL, FL, FL, FL, FL, FL, WL, WL, WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
   [WL, FL, FL, FL, FL, FL, FL, WL, WL, WL, WL, WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL, WL, FL, FL, WL],
   [WL, FL, FL, FL, WL, FL, FL, WL, WL, WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL, WL, FL, FL, WL],
-  [WL, FL, FL, WL, WL, FL, DE, FL, FL, FL, FL, DE, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
+  [WL, FL, MD, WL, WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL],
   [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, HR, FL, FL, FL, FL, FL, FL, WL],
   [WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL],
 ];
@@ -70,7 +70,7 @@ export function checkValidMoviment(nextPosition, walker) {
 function getHeroValidMoves(canvasValue) { 
   return {
     valid: canvasValue === ECanvas.FLOOR || canvasValue === ECanvas.CHEST || canvasValue === ECanvas.TRAP || canvasValue === ECanvas.MINI_DEMON || canvasValue === ECanvas.DEMON,
-    dead: canvasValue === ECanvas.TRAP || canvasValue === ECanvas.MINI_DEMON || canvasValue === ECanvas.DEMON,
+    captured: canvasValue === ECanvas.TRAP || canvasValue === ECanvas.MINI_DEMON || canvasValue === ECanvas.DEMON,
     chest: canvasValue === ECanvas.CHEST,
     door: canvasValue === ECanvas.DOOR
   }
@@ -80,7 +80,7 @@ function getHeroValidMoves(canvasValue) {
 function getEnemyValidMoves(canvasValue) {
   return {
     valid: canvasValue === ECanvas.FLOOR || canvasValue === ECanvas.HERO,
-    dead: false,
+    captureded: false,
     chest: false,
     door: false,
   }

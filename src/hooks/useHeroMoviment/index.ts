@@ -1,13 +1,14 @@
 import useEventListener from '@use-it/event-listener';
 import React from "react";
+import ModalCapture from '../../components/Modal';
 import { CanvasContext } from '../../contexts/canvas';
-import { ChestsContext } from '../../contexts/chests';
+import { ModalContext } from '../../contexts/chests';
 import { EDirection, EWalker } from '../../settings/constants';
 
 
 function useHeroMoviment(initialPosition) {
   const canvasContext = React.useContext(CanvasContext);
-  const chestsContext = React.useContext(ChestsContext);
+  const pokesContext = React.useContext(ModalContext);
 
   const [positionState, updatePositionState] = React.useState(initialPosition);
   const [direction, updateDirectionState] = React.useState(EDirection.RIGHT);
@@ -27,21 +28,23 @@ function useHeroMoviment(initialPosition) {
       updateDirectionState(direction);
     }
 
-    if (moviment.nextMove.dead) {
-      setTimeout(() => {
-        alert('Você foi de Base!')
-      })   
-      window.location.reload()
-    }
+    // if (moviment.nextMove.captured) {
+    //   setTimeout(() => {
+    //     alert('Você foi de Base!')
+    //   })   
+    //   window.location.reload()
+    // }
 
-    if (moviment.nextMove.chest) {
-      chestsContext.updateOpenedChests(moviment.nextPosition);
+    if (moviment.nextMove.captured) {
+      pokesContext.updateOpenedPokes(moviment.nextPosition);
       setTimeout(() => {
         alert('Pokemon Detectado!!')
-      });
+        
+      },);
     }
+    
 
-    if (chestsContext.totalChests === chestsContext.openedChests.total && moviment.nextMove.door) {
+    if (pokesContext.totalPoke === pokesContext.openedPokes.total && moviment.nextMove.door) {
       console.log('Venceu!')
     }
   });

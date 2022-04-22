@@ -1,12 +1,14 @@
 import React from "react";
 import { canvas, ECanvas } from "../../contexts/canvas/helpers";
-import { ChestsContext } from "../../contexts/chests";
+import { ModalContext } from "../../contexts/chests";
 import { GAME_SIZE, GAME_SIZEH } from "../../settings/constants";
 import Chest from "../Chest";
 import Demon from "../Demon";
 import Hero from "../Hero";
 import MiniDemon from "../MiniDemon";
 import Trap from "../TRAP";
+import ModalCapture from "../Modal";
+import useHeroMoviment from "../../hooks/useHeroMoviment";
 
 function getCanvasMap() {
   const array = [];
@@ -50,40 +52,28 @@ function getCanvasMap() {
 const elements = getCanvasMap();
 
 const Board = () => {
-  const chestsContext = React.useContext(ChestsContext);
+  const modalContext = React.useContext(ModalContext);
 
-  function renderOpenedDoor(){
-    return (
-    <img src="./assets/modal_capture.png" alt="" style={{
-      position: "absolute",
-      bottom: "151px",
-      left:   "500px",
-      height: "600px",
-      width:  "274px",
-     }}  />
-    )
+
+  
+  // const Board = () => {
+  // const chestsContext = React.useContext(ChestsContext);
+
+  // function renderOpenedDoor(){
+  //   return true
+  // }
+
+    function renderModal(){
+    return <ModalCapture/>
   }
+
 
   return (
     <div>
       {elements}
-
-      {/* {
-        chestsContext.totalChests === chestsContext.openedChests.total && (
-          <img src="./assets/modal_capture.png" alt="" style={{
-            position: "absolute",
-            bottom: "151px",
-            left:   "500px",
-            height: "600px",
-            width:  "274px",
-           }}  />
-        )
-      } */}
-
-      {chestsContext.totalChests === chestsContext.openedChests.total && (
-        renderOpenedDoor ()
+      {modalContext.totalPoke === modalContext.openedPokes.total && (
+        renderModal()
       )}
-      
       <img src="./assets/background.png" alt="" width={GAME_SIZE} height={GAME_SIZEH} />
     </div>
 

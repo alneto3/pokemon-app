@@ -1,5 +1,5 @@
 import React from "react";
-import { ChestsContext } from "../../contexts/chests";
+import { ModalContext } from "../../contexts/chests";
 import { HEAD_OFFSET, TILE_SIZE, TILE_SIZELEFT, TILE_SIZETOP } from "../../settings/constants";
 
 import './index.css';
@@ -9,9 +9,9 @@ interface IProps {
 }
 
 const Chest = (props: IProps) => {
-  const chestsContext = React.useContext(ChestsContext);
+  const pokesContext = React.useContext(ModalContext);
 
-  const shouldAnimate = chestsContext.openedChests.positions.find((position) => {
+  const shouldAnimate = pokesContext.openedPokes.positions.find((position) => {
     const match = props.initialPosition.y === position.y && props.initialPosition.x === position.x
     return match;
   })
