@@ -9,7 +9,7 @@ function Game() {
     <CanvasProvider>
       <PokesProvider>
 
-        // <Debugger />
+        {/* <Debugger /> */}
         <Board />
       </PokesProvider>
     </CanvasProvider>
